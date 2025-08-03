@@ -150,3 +150,21 @@ themeBtn.addEventListener("click", () => {
   themeBtn.textContent = isDark ? "🌙" : "🌞";
   localStorage.setItem("theme", isDark ? "dark" : "light");
 });
+//for sound
+const clickSound = document.getElementById('clickSound');
+    const themeSound = document.getElementById('themeSound');
+
+    
+    document.querySelectorAll('.number, .operator').forEach(btn => {
+        btn.addEventListener('click', () => {
+            clickSound.currentTime = 0;
+            clickSound.play();
+        });
+    });
+
+   
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        themeSound.currentTime = 0;
+        themeSound.play();
+    });
+
