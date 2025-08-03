@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let operator = null;
 
   function formatNumber(num) {
-    if (num === "-") return "";
-    const n = Number(num);
-    return n.toLocaleString("en");
+  if (num === "-") return "";
+  if (num === "" || isNaN(Number(num))) return num;
+  const n = Number(num);
+  return n.toLocaleString("en");
   }
 
   function unformatNumber(num) {
@@ -190,3 +191,4 @@ document.getElementById('themeToggle').addEventListener('click', () => {
   themeSound.currentTime = 0;
   themeSound.play();
 });
+
