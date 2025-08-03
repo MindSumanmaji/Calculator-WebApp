@@ -37,51 +37,56 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function deleteLast() {
-    current = current.toString().slice(0, -1);
-    updateOutput(current);
+    if (current !== "") {
+      current = current.toString().slice(0, -1);
+      updateOutput(current);
+    } else if (operator !== null && previous !== "") {
+      operator = null;
+      updateHistory(formatNumber(previous));
+    }
   }
 
- function calculate() {
-  const prev = parseFloat(previous);
-  const curr = parseFloat(current);
-  let result = "";
+  function calculate() {
+    const prev = parseFloat(previous);
+    const curr = parseFloat(current);
+    let result = "";
 
-  if (isNaN(prev) || isNaN(curr)) return;
+    if (isNaN(prev) || isNaN(curr)) return;
 
-  switch (operator) {
-    case "+":
-      result = prev + curr;
-      break;
-    case "-":
-      result = prev - curr;
-      break;
-    case "*":
-      result = prev * curr;
-      break;
-    case "/":
-      if (curr === 0) {
-        updateOutput("Error");
-        updateHistory("");
-        current = "";
-        previous = "";
-        operator = null;
+    switch (operator) {
+      case "+":
+        result = prev + curr;
+        break;
+      case "-":
+        result = prev - curr;
+        break;
+      case "×":
+        result = prev * curr;
+        break;
+      case "÷":
+        if (curr === 0) {
+          updateOutput("Error");
+          updateHistory("");
+          current = "";
+          previous = "";
+          operator = null;
+          return;
+        }
+        result = prev / curr;
+        break;
+      case "%":
+        result = prev % curr;
+        break;
+      default:
         return;
-      }
-      result = prev / curr;
-      break;
-    case "%":
-      result = prev % curr;
-      break;
-    default:
-      return;
-  }
+    }
 
-  current = result.toString();
-  operator = null;
-  previous = "";
-  updateOutput(current);
-  updateHistory("");
-}
+    current = result.toString();
+    operator = null;
+    previous = "";
+    updateOutput(current);
+    updateHistory("");
+  }
 
 
   // Number key events
@@ -113,6 +118,13 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           break;
         default:
+          // Allow changing operator if previous exists, current is empty, and operator is null
+          if (current === "" && previous !== "" && operator === null) {
+            operator = id;
+            updateHistory(`${formatNumber(previous)} ${operator}`);
+            updateOutput("");
+            return;
+          }
           if (current === "") return;
 
           if (previous !== "") {
@@ -152,19 +164,18 @@ themeBtn.addEventListener("click", () => {
 });
 //for sound
 const clickSound = document.getElementById('clickSound');
-    const themeSound = document.getElementById('themeSound');
+const themeSound = document.getElementById('themeSound');
 
-    
-    document.querySelectorAll('.number, .operator').forEach(btn => {
-        btn.addEventListener('click', () => {
-            clickSound.currentTime = 0;
-            clickSound.play();
-        });
-    });
 
-   
-    document.getElementById('themeToggle').addEventListener('click', () => {
-        themeSound.currentTime = 0;
-        themeSound.play();
-    });
+document.querySelectorAll('.number, .operator').forEach(btn => {
+  btn.addEventListener('click', () => {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  });
+});
 
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  themeSound.currentTime = 0;
+  themeSound.play();
+});
