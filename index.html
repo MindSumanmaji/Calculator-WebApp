@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator WebApp by Suman</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+        Swal.fire({
+            title: "<em>Code meets Calculation!</em>",
+            text: "Crafted by Suman - turning logic into design",
+            confirmButtonText: "OK",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    ' ',  /* to make the title blank */
+                   "<strong> Assignment Submission - </strong><br>Department of Computer Science, <br>[Panskura Banamali College(Autonomous)]",
+                    {
+                        confirmButtonText: 'Proceed'
+                    }
+                )
+            }
+        })
+    </script>
+
+    <main>
+        <div id="result_area">
+            <div id="history">
+                <p></p>
+            </div>
+            <div id="output">
+                <p></p>
+            </div>
+        </div>
+        <div class="keys">
+            <button class="op__key operator" id="clear">c</button>
+            <button class="op__key operator" id="backspace">del</button>
+            <button class="op__key operator" id="%">%</button>
+            <button class="op__key operator" id="/">&#247;</button>
+            <button class="num__key number" id="7">7</button>
+            <button class="num__key number" id="8">8</button>
+            <button class="num__key number" id="9">9</button>
+            <button class="op__key operator" id="*">&times;</button>
+            <button class="num__key number" id="4">4</button>
+            <button class="num__key number" id="5">5</button>
+            <button class="num__key number" id="6">6</button>
+            <button class="op__key operator" id="-">-</button>
+            <button class="num__key number" id="1">1</button>
+            <button class="num__key number" id="2">2</button>
+            <button class="num__key number" id="3">3</button>
+            <button class="op__key operator" id="+">+</button>
+            <button class="op__key operator" id=".">•</button>
+            <button class="num__key number" id="0">0</button>
+        
+                <button id="themeToggle">🌞</button>
+            </form>
+            <button class="op__key operator" id="=">=</button>
+        </div>
+        <br />
+        <footer>
+            <p><em>Created by Suman Maji</em></p>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
