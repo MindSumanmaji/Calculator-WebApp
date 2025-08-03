@@ -38,10 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function deleteLast() {
     if (current !== "") {
+      // Delete last digit from current input
       current = current.toString().slice(0, -1);
       updateOutput(current);
     } else if (operator !== null && previous !== "") {
+      // Delete the operator if present
       operator = null;
+      updateHistory(formatNumber(previous));
+    } else if (operator === null && previous !== "") {
+      // If operator is gone, delete last digit from previous
+      previous = previous.toString().slice(0, -1);
       updateHistory(formatNumber(previous));
     }
   }
@@ -94,6 +100,11 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener("click", function () {
       const digit = this.id;
+      // If operator is null, current is empty, and previous exists, move previous to current
+      if (operator === null && current === "" && previous !== "") {
+        current = previous;
+        previous = "";
+      }
       current += digit;
       updateOutput(current);
     });
