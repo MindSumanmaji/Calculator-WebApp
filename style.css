@@ -104,7 +104,7 @@ footer p {
   text-align: center;
   color: var(--op-color);
 }
-// dark theme
+
 body.dark {
   --bg-color: #121212;
   --text-color: #f0f0f0;
@@ -128,4 +128,3 @@ body.dark #result_area {
   box-shadow: inset var(--box-shadow-light),
               inset var(--box-shadow-dark);
 }
-
