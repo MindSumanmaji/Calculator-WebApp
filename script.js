@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function formatNumber(num) {
   if (num === "-") return "";
   if (num === "" || isNaN(Number(num))) return num;
+  if (num.includes && num.includes(".")) {
+    // Don't format if it's a decimal, just return as is
+    return num;
+  }
   const n = Number(num);
   return n.toLocaleString("en");
   }
@@ -191,4 +195,3 @@ document.getElementById('themeToggle').addEventListener('click', () => {
   themeSound.currentTime = 0;
   themeSound.play();
 });
-
